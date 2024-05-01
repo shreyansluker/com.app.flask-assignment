@@ -24,5 +24,23 @@ output = json
 
 All the related code for the infrastructure deployment is present in environments/test folder and the base modules are written in modules folder
 
+Once you have configured the right profile in your machine locally, you can deploy resources using below commands 
+Go to terraform directory
+```bash
+cd com.app.flask-assignment/environments/test/
+```
+Initialize terraform
+```bash
+terraform init
+```
+Plan the modules
+```bash
+terraform plan
+```
+Apply the resources
+```bash
+terraform apply
+```
+
 **NOTE:** **To test the API, you can do a GET call from postman/hit the url in any browser with the public ip of the instance followed by the port and path. 
 i.e http://public_ip:5000/health**
