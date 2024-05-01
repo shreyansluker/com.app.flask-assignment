@@ -1,0 +1,6 @@
+#!/bin/bash
+# SECONDS is a builtin bash variable which contains the number of seconds the script is running
+until [ "$SECONDS" -ge 3600 ]
+do
+   /opt/puppetlabs/bin/puppet agent -t --server ${puppet_server} --environment ${puppet_environment} && break # if the agent was running successfully break the loop
+done
