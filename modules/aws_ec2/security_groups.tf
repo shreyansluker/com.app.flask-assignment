@@ -19,32 +19,10 @@ resource "aws_security_group_rule" "egress-all" {
 # Allow ingress from vpc on port 8080
 resource "aws_security_group_rule" "ingress-vpc" {
   description       = "Allow ingress to port 8080"
-  from_port         = 8080
+  from_port         = 5000
   protocol          = "tcp"
   security_group_id = aws_security_group.this.id
-  to_port           = 8080
+  to_port           = 5000
   type              = "ingress"
-  cidr_blocks       = [var.vpc_cidr_range]
-}
-
-# Allow SSH from Jenkins on port 22
-resource "aws_security_group_rule" "ingress-jenkins" {
-  description              = "Allow SSH ingress traffic from the Jenkins instances"
-  from_port                = 22
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.this.id
-  source_security_group_id = var.jenkins_sg_id
-  to_port                  = 22
-  type                     = "ingress"
-}
-
-# Prometheus Scrape SG rules
-resource "aws_security_group_rule" "phpapp-ingress-prometheus" {
-  description              = "Allow prometheus to scrape exports in their dedicated port-range"
-  from_port                = 9100
-  to_port                  = 9120
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.this.id
-  source_security_group_id = var.prometheus-sg-id
-  type                     = "ingress"
+  cidr_blocks       = ["0.0.0.0/0"]
 }
